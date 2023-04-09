@@ -12,6 +12,13 @@ export default function handler(req: NextRequest) {
   const { searchParams } = req.nextUrl;
   const title = searchParams.get("title");
 
+  if (!title) {
+    return new ImageResponse(<>titleを指定してください</>, {
+      width: 1200,
+      height: 630,
+    });
+  }
+
   return new ImageResponse(
     (
       <div
